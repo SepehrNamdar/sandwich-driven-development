@@ -46,4 +46,13 @@ public class Interview {
     public int hashCode() {
         return Objects.hash(candidate, recruiter, interviewDate);
     }
+
+    @Override
+    public String toString() {
+        return "Interview{" +
+                "candidate=" + candidate +
+                ", recruiter=" + recruiter +
+                ", interviewDate=" + interviewDate +
+                '}';
+    }
 }

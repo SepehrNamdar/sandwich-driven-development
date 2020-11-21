@@ -1,0 +1,2 @@
+[123, 2020-11-21] => Interview{candidate=Candidate{skills=[.Net, Java, PHP, JS]}, recruiter=Recruiter{skills=[Java, .Net, PHP, JS]}, interviewDate=2020-11-21} 
+[null, 2020-11-21] => Interview{candidate=Candidate{skills=[.Net, Java, PHP, JS]}, recruiter=Recruiter{skills=[Java, .Net, PHP, JS]}, interviewDate=2020-11-21} 

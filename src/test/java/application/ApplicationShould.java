@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static java.time.LocalDate.now;
+import static org.approvaltests.combinations.CombinationApprovals.verifyAllCombinations;
 
 public class ApplicationShould {
 
@@ -24,18 +25,15 @@ public class ApplicationShould {
 
     @Test
     void works() {
+        verifyAllCombinations(
+                this::planInterview,
+                new String[] {"123", null},
+                new LocalDate[] {now()});
+    }
+
+    private Interview planInterview(String candidateId, LocalDate availability) {
         Application application = new Application(candidates, recruiters, interviews);
-
-        Interview interview = application.planInterview("123", LocalDate.now());
-
-        Recruiter expectedRecruiter = new Recruiter();
-        List<String> skills = new ArrayList<>();
-        skills.add("Java");
-        skills.add(".Net");
-        skills.add("PHP");
-        skills.add("JS");
-        expectedRecruiter.setSkills(skills);
-        assertThat(interview.getRecruiter()).isEqualTo(expectedRecruiter);
+        return application.planInterview(candidateId, availability);
     }
 
     private static class FakeCandidates implements CandidateRepository {

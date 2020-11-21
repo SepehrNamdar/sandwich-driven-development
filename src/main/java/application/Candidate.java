@@ -26,4 +26,11 @@ public class Candidate {
     public int hashCode() {
         return Objects.hash(skills);
     }
+
+    @Override
+    public String toString() {
+        return "Candidate{" +
+                "skills=" + skills +
+                '}';
+    }
 }
