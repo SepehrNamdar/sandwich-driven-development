@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Recruiter {
+    private String recruiterId;
     private List<String> skills;
     private List<LocalDate> availabilities;
     private String name;
@@ -33,25 +34,35 @@ public class Recruiter {
         this.name = name;
     }
 
+    public String getRecruiterId() {
+        return recruiterId;
+    }
+
+    public void setRecruiterId(String recruiterId) {
+        this.recruiterId = recruiterId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recruiter recruiter = (Recruiter) o;
-        return Objects.equals(skills, recruiter.skills) &&
+        return Objects.equals(recruiterId, recruiter.recruiterId) &&
+                Objects.equals(skills, recruiter.skills) &&
                 Objects.equals(availabilities, recruiter.availabilities) &&
                 Objects.equals(name, recruiter.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(skills, availabilities, name);
+        return Objects.hash(recruiterId, skills, availabilities, name);
     }
 
     @Override
     public String toString() {
         return "Recruiter{" +
-                "skills=" + skills +
+                "recruiterId='" + recruiterId + '\'' +
+                ", skills=" + skills +
                 ", availabilities=" + availabilities +
                 ", name='" + name + '\'' +
                 '}';

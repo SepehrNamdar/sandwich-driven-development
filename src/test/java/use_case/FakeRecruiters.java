@@ -13,10 +13,27 @@ public class FakeRecruiters implements RecruiterRepository {
 
     List<Recruiter> recruiters;
 
+    @Override
+    public List<Recruiter> findRecruiterByAvailability(LocalDate availability) {
+        return recruiters.stream()
+                .filter(recruiter -> recruiter.getAvailabilities().contains(availability))
+                .collect(toList());
+    }
+
+    @Override
+    public void bookAvailability(Recruiter appropriateRecruiter, LocalDate availability) {
+        recruiters.forEach(recruiter -> {
+            if (recruiter.getRecruiterId().equals(appropriateRecruiter.getRecruiterId())) {
+                recruiter.getAvailabilities().remove(availability);
+            }
+        });
+    }
+
     public FakeRecruiters() {
         recruiters = new ArrayList<>();
 
         Recruiter emma = new Recruiter();
+        emma.setRecruiterId("001");
         List<String> emmaSkills = new ArrayList<>();
         emmaSkills.add("PHP");
         emmaSkills.add("JS");
@@ -28,6 +45,7 @@ public class FakeRecruiters implements RecruiterRepository {
         recruiters.add(emma);
 
         Recruiter mary = new Recruiter();
+        mary.setRecruiterId("002");
         List<String> marySkills = new ArrayList<>();
         marySkills.add("Java");
         marySkills.add(".Net");
@@ -42,6 +60,7 @@ public class FakeRecruiters implements RecruiterRepository {
         recruiters.add(mary);
 
         Recruiter john = new Recruiter();
+        john.setRecruiterId("003");
         List<String> johnSkills = new ArrayList<>();
         johnSkills.add("Java");
         johnSkills.add(".Net");
@@ -53,12 +72,5 @@ public class FakeRecruiters implements RecruiterRepository {
         johnAvailabilities.add(of(2021, 2, 20));
         john.setAvailabilities(johnAvailabilities);
         recruiters.add(john);
-    }
-
-    @Override
-    public List<Recruiter> findRecruiterByAvailability(LocalDate availability) {
-        return recruiters.stream()
-                .filter(recruiter -> recruiter.getAvailabilities().contains(availability))
-                .collect(toList());
     }
 }

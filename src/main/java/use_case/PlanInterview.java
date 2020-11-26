@@ -32,9 +32,12 @@ public class PlanInterview {
                 .filter(availableRecruiter -> availableRecruiter.getSkills().containsAll(candidateSkills))
                 .findFirst();
 
+        Recruiter appropriateRecruiter = recruiter.orElseThrow(AnyRecruiterFoundException::new);
+        recruiters.bookAvailability(appropriateRecruiter, availability);
+
         Interview interview = new Interview();
         interview.setCandidate(candidate);
-        interview.setRecruiter(recruiter.orElseThrow(AnyRecruiterFoundException::new));
+        interview.setRecruiter(appropriateRecruiter);
         interview.setInterviewDate(availability);
 
         interviews.save(interview);
