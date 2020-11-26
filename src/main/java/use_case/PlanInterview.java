@@ -1,23 +1,27 @@
-package application;
+package use_case;
+
+import model.Candidate;
+import model.Interview;
+import model.Recruiter;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class Application {
+public class PlanInterview {
 
     private final CandidateRepository candidates;
     private final RecruiterRepository recruiters;
     private final InterviewRepository interviews;
 
-    public Application(
+    public PlanInterview(
             CandidateRepository candidates, RecruiterRepository recruiters, InterviewRepository interviews) {
         this.candidates = candidates;
         this.recruiters = recruiters;
         this.interviews = interviews;
     }
 
-    public Interview planInterview(String candidateId, LocalDate availability) {
+    public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId);
         List<String> candidateSkills = candidate.getSkills();
 

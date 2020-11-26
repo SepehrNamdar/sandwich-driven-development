@@ -1,10 +1,11 @@
-package application;
+package model;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Recruiter {
+public class Candidate {
     private List<String> skills;
+    private String name;
 
     public List<String> getSkills() {
         return skills;
@@ -14,23 +15,33 @@ public class Recruiter {
         this.skills = skills;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Recruiter recruiter = (Recruiter) o;
-        return Objects.equals(skills, recruiter.skills);
+        Candidate candidate = (Candidate) o;
+        return Objects.equals(skills, candidate.skills) &&
+                Objects.equals(name, candidate.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(skills);
+        return Objects.hash(skills, name);
     }
 
     @Override
     public String toString() {
-        return "Recruiter{" +
+        return "Candidate{" +
                 "skills=" + skills +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
