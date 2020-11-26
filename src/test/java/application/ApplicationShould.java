@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.LocalDate.now;
+import static java.time.LocalDate.of;
 import static org.approvaltests.combinations.CombinationApprovals.verifyAllCombinations;
 
 public class ApplicationShould {
@@ -28,7 +28,7 @@ public class ApplicationShould {
         verifyAllCombinations(
                 this::planInterview,
                 new String[] {"123", null},
-                new LocalDate[] {now()});
+                new LocalDate[] {of(2021, 2, 20)});
     }
 
     private Interview planInterview(String candidateId, LocalDate availability) {
