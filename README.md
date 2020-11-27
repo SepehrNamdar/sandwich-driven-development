@@ -1,12 +1,19 @@
 # **Sandwich Driven Development**
 
-In this hands-on training session, we try to solve a very common problem in software development teams, that is, a legacy procedural code without tests.
+### Step 1 - Protect your code with Approval Tests before start Refactoring :
 
-The idea is to protect our code thanks to Approval Tests and try to Refactor this procedural code to a domain centric one.
-The aim is to follow good practices to finally reach services that correspond to the Sandwich pattern and coherent rich domain objects containing business behaviours.
+Refactoring is changing the structure of your code in order to improve it without changing its logic and behaviour.
 
-Behind the scenes, we try to respond to the following questions :
-- What is a pure and isolated Domain ?
-- How to know if a Domain is Completeness ?
-- What is the difference between an Application Service & a Domain Service ?
-- Does Sandwich pattern helps us to make clean Domain Services ?
+One of the bad practices in Refactoring is to do it without covering your code with tests.
+
+To write tests, you need probably someone/some documentation to understand the code and its logic.
+It also takes time to prevent your code for any case.
+
+What if we have any way to understand the code ?
+Hopefully there is Approval Tests to help us in this case.
+With Approval Tests we can write rapidly a bunch of tests to protect our code a minimum which allows us to start refactoring the code and understanding its logic.
+Obviously we need other types of tests (ex: Unit Tests) to protect ou code correctly.
+
+#### Where to start ?
+
+So let's have a look to https://approvaltests.com/platforms/ Website. Then choose your implementation and try to implement Approval Tests for the Recruitment System.
