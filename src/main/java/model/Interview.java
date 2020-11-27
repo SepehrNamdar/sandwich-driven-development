@@ -1,10 +1,6 @@
 package model;
 
-import use_case.AnyRecruiterFoundException;
-import use_case.RecruiterRepository;
-
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 public class Interview {
@@ -13,16 +9,7 @@ public class Interview {
     private LocalDate interviewDate;
 
     public Interview(
-            LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters, RecruiterRepository recruiters) {
-        List<String> candidateSkills = candidate.getSkills();
-
-        Recruiter appropriateRecruiter = availableRecruiters.stream()
-                .filter(availableRecruiter -> availableRecruiter.canTest(candidateSkills))
-                .findFirst()
-                .orElseThrow(AnyRecruiterFoundException::new);
-
-        Recruiter recruiter = recruiters.bookAvailability(appropriateRecruiter, availability);
-
+            LocalDate availability, Candidate candidate, Recruiter recruiter) {
         this.candidate = candidate;
         this.recruiter = recruiter;
         this.interviewDate = availability;
