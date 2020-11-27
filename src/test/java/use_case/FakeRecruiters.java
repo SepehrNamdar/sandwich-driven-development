@@ -7,18 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.time.LocalDate.of;
-import static java.util.stream.Collectors.toList;
 
 public class FakeRecruiters implements RecruiterRepository {
 
     List<Recruiter> recruiters;
-
-    @Override
-    public List<Recruiter> findRecruiterByAvailability(LocalDate availability) {
-        return recruiters.stream()
-                .filter(recruiter -> recruiter.getAvailabilities().contains(availability))
-                .collect(toList());
-    }
 
     @Override
     public Recruiter bookAvailability(Recruiter appropriateRecruiter, LocalDate availability) {

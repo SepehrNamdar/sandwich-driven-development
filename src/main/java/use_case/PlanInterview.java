@@ -27,7 +27,7 @@ public class PlanInterview {
         List<Recruiter> allRecruiters = recruiters.findAllRecruiters();
 
         Recruiter recruiter = new RecruiterFinder()
-                .findAppropriateRecruiter(availability, candidate, allRecruiters, recruiters);
+                .findAppropriateRecruiter(availability, candidate, allRecruiters);
         Interview interview = new Interview(availability, candidate, recruiter);
 
         interviews.save(interview);

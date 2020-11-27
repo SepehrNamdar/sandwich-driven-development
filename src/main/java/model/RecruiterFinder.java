@@ -1,7 +1,6 @@
 package model;
 
 import use_case.AnyRecruiterFoundException;
-import use_case.RecruiterRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -9,15 +8,15 @@ import java.util.List;
 // Domain Service
 public class RecruiterFinder {
     public Recruiter findAppropriateRecruiter(
-            LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters, RecruiterRepository recruiters) {
+            LocalDate availability, Candidate candidate, List<Recruiter> allRecruiters) {
         List<String> candidateSkills = candidate.getSkills();
 
-        Recruiter appropriateRecruiter = availableRecruiters.stream()
+        Recruiter appropriateRecruiter = allRecruiters.stream()
                 .filter(availableRecruiter -> availableRecruiter.canTest(candidateSkills))
                 .filter(recruiter -> recruiter.isAvailable(availability))
                 .findFirst()
                 .orElseThrow(AnyRecruiterFoundException::new);
 
-        return recruiters.bookAvailability(appropriateRecruiter, availability);
+        return appropriateRecruiter.book(availability);
     }
 }

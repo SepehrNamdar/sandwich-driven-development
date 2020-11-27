@@ -17,6 +17,11 @@ public class Recruiter {
         return availabilities.contains(availability);
     }
 
+    public Recruiter book(LocalDate availability) {
+        availabilities.remove(availability);
+        return this;
+    }
+
     private String name;
 
     public List<String> getSkills() {
