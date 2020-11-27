@@ -13,25 +13,14 @@ public class FakeRecruiters implements RecruiterRepository {
     List<Recruiter> recruiters;
 
     @Override
-    public Recruiter bookAvailability(Recruiter appropriateRecruiter, LocalDate availability) {
-        recruiters.forEach(recruiter -> {
-            if (recruiter.getRecruiterId().equals(appropriateRecruiter.getRecruiterId())) {
-                recruiter.getAvailabilities().remove(availability);
-            }
-        });
-        return findRecruiterById(appropriateRecruiter.getRecruiterId());
-    }
-
-    @Override
     public List<Recruiter> findAllRecruiters() {
         return recruiters;
     }
 
-    public Recruiter findRecruiterById(String recruiterId) {
-        return recruiters.stream()
-                .filter(recruiter -> recruiter.getRecruiterId().contains(recruiterId))
-                .findFirst()
-                .orElseThrow(AnyRecruiterFoundException::new);
+    @Override
+    public Recruiter updateRecruiter(Recruiter recruiter) {
+        // update this recruiter
+        return recruiter;
     }
 
     public FakeRecruiters() {

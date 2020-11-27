@@ -17,39 +17,22 @@ public class Recruiter {
         return availabilities.contains(availability);
     }
 
-    public Recruiter book(LocalDate availability) {
+    public void book(LocalDate availability) {
         availabilities.remove(availability);
-        return this;
     }
 
     private String name;
 
-    public List<String> getSkills() {
-        return skills;
-    }
-
     public void setSkills(List<String> skills) {
         this.skills = skills;
-    }
-
-    public List<LocalDate> getAvailabilities() {
-        return availabilities;
     }
 
     public void setAvailabilities(List<LocalDate> availabilities) {
         this.availabilities = availabilities;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getRecruiterId() {
-        return recruiterId;
     }
 
     public void setRecruiterId(String recruiterId) {
