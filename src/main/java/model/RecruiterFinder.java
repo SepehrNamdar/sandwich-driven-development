@@ -14,6 +14,7 @@ public class RecruiterFinder {
 
         Recruiter appropriateRecruiter = availableRecruiters.stream()
                 .filter(availableRecruiter -> availableRecruiter.canTest(candidateSkills))
+                .filter(recruiter -> recruiter.isAvailable(availability))
                 .findFirst()
                 .orElseThrow(AnyRecruiterFoundException::new);
 

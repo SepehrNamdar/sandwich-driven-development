@@ -30,6 +30,11 @@ public class FakeRecruiters implements RecruiterRepository {
         return findRecruiterById(appropriateRecruiter.getRecruiterId());
     }
 
+    @Override
+    public List<Recruiter> findAllRecruiters() {
+        return recruiters;
+    }
+
     public Recruiter findRecruiterById(String recruiterId) {
         return recruiters.stream()
                 .filter(recruiter -> recruiter.getRecruiterId().contains(recruiterId))

@@ -24,11 +24,10 @@ public class PlanInterview {
 
     public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId);
-        List<Recruiter> availableRecruiters =
-                recruiters.findRecruiterByAvailability(availability);
+        List<Recruiter> allRecruiters = recruiters.findAllRecruiters();
 
         Recruiter recruiter = new RecruiterFinder()
-                .findAppropriateRecruiter(availability, candidate, availableRecruiters, recruiters);
+                .findAppropriateRecruiter(availability, candidate, allRecruiters, recruiters);
         Interview interview = new Interview(availability, candidate, recruiter);
 
         interviews.save(interview);

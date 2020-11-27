@@ -13,6 +13,10 @@ public class Recruiter {
         return this.skills.containsAll(candidateSkills);
     }
 
+    public boolean isAvailable(LocalDate availability) {
+        return availabilities.contains(availability);
+    }
+
     private String name;
 
     public List<String> getSkills() {
