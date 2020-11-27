@@ -1,0 +1,21 @@
+[123, 2021-02-20] => Interview{candidate=Candidate{skills=[.Net, Java, PHP, JS], name='Alex'}, recruiter=Recruiter{recruiterId='002', skills=[Java, .Net, PHP, JS], availabilities=[2021-02-22], name='Mary'}, interviewDate=2021-02-20} 
+[123, 2021-02-21] => use_case.AnyRecruiterFoundException: null 
+[123, 2021-02-22] => Interview{candidate=Candidate{skills=[.Net, Java, PHP, JS], name='Alex'}, recruiter=Recruiter{recruiterId='002', skills=[Java, .Net, PHP, JS], availabilities=[], name='Mary'}, interviewDate=2021-02-22} 
+[456, 2021-02-20] => Interview{candidate=Candidate{skills=[JS], name='Bob'}, recruiter=Recruiter{recruiterId='001', skills=[PHP, JS], availabilities=[], name='Emma'}, interviewDate=2021-02-20} 
+[456, 2021-02-21] => use_case.AnyRecruiterFoundException: null 
+[456, 2021-02-22] => use_case.AnyRecruiterFoundException: null 
+[789, 2021-02-20] => use_case.AnyRecruiterFoundException: null 
+[789, 2021-02-21] => use_case.AnyRecruiterFoundException: null 
+[789, 2021-02-22] => use_case.AnyRecruiterFoundException: null 
+[null, 2021-02-20] => java.lang.NullPointerException: null 
+[null, 2021-02-21] => java.lang.NullPointerException: null 
+[null, 2021-02-22] => java.lang.NullPointerException: null 
+[, 2021-02-20] => java.lang.NullPointerException: null 
+[, 2021-02-21] => java.lang.NullPointerException: null 
+[, 2021-02-22] => java.lang.NullPointerException: null 
+[XYZ, 2021-02-20] => java.lang.NullPointerException: null 
+[XYZ, 2021-02-21] => java.lang.NullPointerException: null 
+[XYZ, 2021-02-22] => java.lang.NullPointerException: null 
+[456-por, 2021-02-20] => java.lang.NullPointerException: null 
+[456-por, 2021-02-21] => java.lang.NullPointerException: null 
+[456-por, 2021-02-22] => java.lang.NullPointerException: null 
