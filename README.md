@@ -1,12 +1,14 @@
 # **Sandwich Driven Development**
 
-### Step 3 - Move business logics to your Domain objects :
+### Step 4 - Add a new business rule using Temporal Coupling :
 
-Thanks to Sandwich Pattern you isolated your business logics, now it's time to move them into Domain objects to avoid an Anemic Domain Model which is an anti-pattern.
+In all projects the business rules change and as a Software Developer we should try to find a simple and maintainable solution.
 
-#### How to do ?
+#### Temporal Coupling
 
-Try to follow Single Responsibility Principle to find the right object corresponding to each business rule.
+Temporal Coupling is when the lines of code should be executed in some order, otherwise something wrong will happen.
+For example, you should first open a document to be able to modify it.
 
-Please note that THE SOLUTION never exists and each one can propose a different solution which can have its advantages and disadvantages.
-In other words, there is any Silver Bullet does in Software Programming solutions.
+#### Business Rule
+
+We ask you to ensure that the Recruiter will be saved before the Interview object. In other word the code should prevent you if the Recruiter will be saved after the Interview. Try to find a way to implement this new business rule in your code using Temporal Coupling.

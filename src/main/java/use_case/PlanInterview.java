@@ -26,9 +26,8 @@ public class PlanInterview {
         List<Recruiter> availableRecruiters =
                 recruiters.findRecruiterByAvailability(availability);
 
-        Interview interview = new Interview(availability, candidate, availableRecruiters);
+        Interview interview = new Interview(availability, candidate, availableRecruiters, recruiters);
 
-        recruiters.bookAvailability(interview.getRecruiter(), interview.getInterviewDate());
         interviews.save(interview);
         return interview;
     }
