@@ -21,12 +21,20 @@ public class FakeRecruiters implements RecruiterRepository {
     }
 
     @Override
-    public void bookAvailability(Recruiter appropriateRecruiter, LocalDate availability) {
+    public Recruiter bookAvailability(Recruiter appropriateRecruiter, LocalDate availability) {
         recruiters.forEach(recruiter -> {
             if (recruiter.getRecruiterId().equals(appropriateRecruiter.getRecruiterId())) {
                 recruiter.getAvailabilities().remove(availability);
             }
         });
+        return findRecruiterById(appropriateRecruiter.getRecruiterId());
+    }
+
+    public Recruiter findRecruiterById(String recruiterId) {
+        return recruiters.stream()
+                .filter(recruiter -> recruiter.getRecruiterId().contains(recruiterId))
+                .findFirst()
+                .orElseThrow(AnyRecruiterFoundException::new);
     }
 
     public FakeRecruiters() {
