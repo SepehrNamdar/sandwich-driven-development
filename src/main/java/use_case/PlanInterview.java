@@ -6,7 +6,6 @@ import model.Recruiter;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 // Application Service
 public class PlanInterview {
@@ -27,27 +26,11 @@ public class PlanInterview {
         List<Recruiter> availableRecruiters =
                 recruiters.findRecruiterByAvailability(availability);
 
-        Interview interview = getInterview(availability, candidate, availableRecruiters);
+        Interview interview = new Interview(availability, candidate, availableRecruiters);
 
         recruiters.bookAvailability(interview.getRecruiter(), interview.getInterviewDate());
         interviews.save(interview);
         return interview;
     }
 
-    private Interview getInterview(
-            LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters) {
-        List<String> candidateSkills = candidate.getSkills();
-
-        Optional<Recruiter> recruiter = availableRecruiters.stream()
-                .filter(availableRecruiter -> availableRecruiter.getSkills().containsAll(candidateSkills))
-                .findFirst();
-
-        Recruiter appropriateRecruiter = recruiter.orElseThrow(AnyRecruiterFoundException::new);
-
-        Interview interview = new Interview();
-        interview.setCandidate(candidate);
-        interview.setRecruiter(appropriateRecruiter);
-        interview.setInterviewDate(availability);
-        return interview;
-    }
 }

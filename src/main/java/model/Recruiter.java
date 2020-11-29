@@ -8,6 +8,11 @@ public class Recruiter {
     private String recruiterId;
     private List<String> skills;
     private List<LocalDate> availabilities;
+
+    boolean canTest(List<String> candidateSkills) {
+        return this.skills.containsAll(candidateSkills);
+    }
+
     private String name;
 
     public List<String> getSkills() {
