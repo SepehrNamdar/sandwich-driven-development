@@ -1,19 +1,29 @@
 # **Sandwich Driven Development**
 
-### Step 1 - Protect your code with Approval Tests before start Refactoring :
+### Step 2 - Apply the Sandwich Pattern to your Application Service :
 
-Refactoring is changing the structure of your code in order to improve it without changing its logic and behaviour.
+Now that you have protected your code with Approval Tests, you can get into Refactoring a little more safely.
 
-One of the bad practices in Refactoring is to do it without covering your code with tests.
+The aim of this step is to apply Sandwich Pattern to our Application Service.
 
-To write tests, you need probably someone/some documentation to understand the code and its logic.
-It also takes time to prevent your code for any case.
+#### What is an Application Service ?
 
-What if we have any way to understand the code ?
-Hopefully there is Approval Tests to help us in this case.
-With Approval Tests we can write rapidly a bunch of tests to protect our code a minimum which allows us to start refactoring the code and understanding its logic.
-Obviously we need other types of tests (ex: Unit Tests) to protect ou code correctly.
+An Application Service is the entry point of a use case of our system.
+Its responsibility is to orchestrate the use case and its steps.
+This is the case of PlanInterview class in our code which contains the scenario of planning an interview given a candidate and its availability.
 
-#### Where to start ?
+#### How to apply Sandwich Pattern to our code ?
 
-So let's have a look to https://approvaltests.com/platforms/ Website. Then choose your implementation and try to implement Approval Tests for the Recruitment System.
+Applying Sandwich Pattern consist of pushing the work with shared states (generally Database) to its extremes (up and down) between which we have an immutable domain we interact with.
+
+So let's go to our Application Service (PlanInterview) and try to identify the lines of code that interact with external layers (for example Repositories which interact with Infrastructure layer) of our system.
+Then try to push them to extreme up (for reading data) and extreme down (for saving data) of your Application Service.
+By doing that your domain code finds himself in Sandwich between these two parts of code and give you your Pattern.
+
+#### What are the benefices of this Pattern ?
+
+Separating your domain code from external interactions helps you to :
+ - reach a Domain Model which is pure and isolated
+ - writing the tests for your domain model easier
+ - understand your use case better
+ - maintain your code easier

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+// Application Service
 public class PlanInterview {
 
     private final CandidateRepository candidates;
