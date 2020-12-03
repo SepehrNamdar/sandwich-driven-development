@@ -3,6 +3,7 @@ package use_case;
 import model.Candidate;
 import model.Interview;
 import model.Recruiter;
+import model.RecruiterFinder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,7 +27,9 @@ public class PlanInterview {
         List<Recruiter> availableRecruiters =
                 recruiters.findRecruiterByAvailability(availability);
 
-        Interview interview = new Interview(availability, candidate, availableRecruiters, recruiters);
+        Recruiter recruiter = new RecruiterFinder()
+                .findAppropriateRecruiter(availability, candidate, availableRecruiters, recruiters);
+        Interview interview = new Interview(availability, candidate, recruiter);
 
         interviews.save(interview);
         return interview;
