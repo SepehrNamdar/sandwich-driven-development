@@ -1,12 +1,11 @@
 package use_case;
 
+import model.BookRecruiter;
 import model.Candidate;
 import model.Interview;
 import model.Recruiter;
-import model.RecruiterFinder;
 
 import java.time.LocalDate;
-import java.util.List;
 
 // Application Service
 public class PlanInterview {
@@ -24,11 +23,8 @@ public class PlanInterview {
 
     public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId);
-        List<Recruiter> availableRecruiters =
-                recruiters.findRecruiterByAvailability(availability);
 
-        Recruiter recruiter = new RecruiterFinder()
-                .findAppropriateRecruiter(availability, candidate, availableRecruiters, recruiters);
+        Recruiter recruiter = new BookRecruiter().findRecruiter(availability, candidate, recruiters);
         Interview interview = new Interview(availability, candidate, recruiter);
 
         interviews.save(interview);
