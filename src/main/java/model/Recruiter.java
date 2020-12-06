@@ -5,9 +5,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class Recruiter {
-    private String recruiterId;
-    private List<String> skills;
-    private List<LocalDate> availabilities;
+    private final String recruiterId;
+    private final List<String> skills;
+    private final List<LocalDate> availabilities;
+    private final String name;
+
+    public Recruiter(
+            String recruiterId, List<String> skills, List<LocalDate> availabilities, String name) {
+        this.recruiterId = recruiterId;
+        this.skills = skills;
+        this.availabilities = availabilities;
+        this.name = name;
+    }
 
     boolean canTest(List<String> candidateSkills) {
         return this.skills.containsAll(candidateSkills);
@@ -19,24 +28,6 @@ public class Recruiter {
 
     public void book(LocalDate availability) {
         availabilities.remove(availability);
-    }
-
-    private String name;
-
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
-    }
-
-    public void setAvailabilities(List<LocalDate> availabilities) {
-        this.availabilities = availabilities;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setRecruiterId(String recruiterId) {
-        this.recruiterId = recruiterId;
     }
 
     @Override
