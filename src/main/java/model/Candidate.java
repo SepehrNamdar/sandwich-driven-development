@@ -1,5 +1,8 @@
 package model;
 
+import use_case.AnyRecruiterFoundException;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,16 +10,18 @@ public class Candidate {
     private List<String> skills;
     private String name;
 
-    public List<String> getSkills() {
-        return skills;
+    public Recruiter findAppropriateRecruiter(
+            LocalDate availability, List<Recruiter> allRecruiters) {
+
+        return allRecruiters.stream()
+                .filter(availableRecruiter -> availableRecruiter.canTest(skills))
+                .filter(recruiter -> recruiter.isAvailable(availability))
+                .findFirst()
+                .orElseThrow(AnyRecruiterFoundException::new);
     }
 
     public void setSkills(List<String> skills) {
         this.skills = skills;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {

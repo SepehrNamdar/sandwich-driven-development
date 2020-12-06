@@ -7,34 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.time.LocalDate.of;
-import static java.util.stream.Collectors.toList;
 
 public class FakeRecruiters implements RecruiterRepository {
 
     List<Recruiter> recruiters;
 
     @Override
-    public List<Recruiter> findRecruiterByAvailability(LocalDate availability) {
-        return recruiters.stream()
-                .filter(recruiter -> recruiter.getAvailabilities().contains(availability))
-                .collect(toList());
+    public List<Recruiter> findAllRecruiters() {
+        return recruiters;
     }
 
     @Override
-    public Recruiter bookAvailability(Recruiter appropriateRecruiter, LocalDate availability) {
-        recruiters.forEach(recruiter -> {
-            if (recruiter.getRecruiterId().equals(appropriateRecruiter.getRecruiterId())) {
-                recruiter.getAvailabilities().remove(availability);
-            }
-        });
-        return findRecruiterById(appropriateRecruiter.getRecruiterId());
-    }
-
-    public Recruiter findRecruiterById(String recruiterId) {
-        return recruiters.stream()
-                .filter(recruiter -> recruiter.getRecruiterId().contains(recruiterId))
-                .findFirst()
-                .orElseThrow(AnyRecruiterFoundException::new);
+    public Recruiter updateRecruiter(Recruiter recruiter) {
+        // update this recruiter
+        return recruiter;
     }
 
     public FakeRecruiters() {
