@@ -7,8 +7,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Candidate {
-    private List<String> skills;
-    private String name;
+    private final List<String> skills;
+    private final String name;
+
+    public Candidate(List<String> skills, String name) {
+        this.skills = skills;
+        this.name = name;
+    }
 
     public Recruiter findAppropriateRecruiter(
             LocalDate availability, List<Recruiter> allRecruiters) {
@@ -18,14 +23,6 @@ public class Candidate {
                 .filter(recruiter -> recruiter.isAvailable(availability))
                 .findFirst()
                 .orElseThrow(AnyRecruiterFoundException::new);
-    }
-
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
