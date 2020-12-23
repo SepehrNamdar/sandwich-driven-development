@@ -1,40 +1,28 @@
 package model;
 
+import use_case.AnyRecruiterFoundException;
+
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 public class Candidate {
-    private List<String> skills;
-    private String name;
+    private final List<String> skills;
+    private final String name;
 
-    public List<String> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<String> skills) {
+    public Candidate(String name, List<String> skills) {
+        this.name = name;
         this.skills = skills;
     }
 
-    public String getName() {
-        return name;
-    }
+    public Recruiter bookRecruiter(LocalDate availability, List<Recruiter> allRecruiters) {
+        Recruiter appropriateRecruiter = allRecruiters.stream()
+                .filter(r -> r.getAvailabilities().contains(availability))
+                .filter(availableRecruiter -> availableRecruiter.canTest(skills))
+                .findFirst()
+                .orElseThrow(AnyRecruiterFoundException::new);
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Candidate candidate = (Candidate) o;
-        return Objects.equals(skills, candidate.skills) &&
-                Objects.equals(name, candidate.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(skills, name);
+        appropriateRecruiter.book(availability);
+        return appropriateRecruiter;
     }
 
     @Override

@@ -1,3 +1,4 @@
 /.idea/*
 /sandwich-driven-development.iml
 /target/*
+*.bak

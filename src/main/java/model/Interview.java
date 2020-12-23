@@ -1,50 +1,16 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Interview {
-    private Candidate candidate;
-    private Recruiter recruiter;
-    private LocalDate interviewDate;
+    private final Candidate candidate;
+    private final Recruiter recruiter;
+    private final LocalDate interviewDate;
 
-    public Candidate getCandidate() {
-        return candidate;
-    }
-
-    public void setCandidate(Candidate candidate) {
+    public Interview(Candidate candidate, Recruiter recruiter, LocalDate interviewDate) {
         this.candidate = candidate;
-    }
-
-    public Recruiter getRecruiter() {
-        return recruiter;
-    }
-
-    public void setRecruiter(Recruiter recruiter) {
         this.recruiter = recruiter;
-    }
-
-    public LocalDate getInterviewDate() {
-        return interviewDate;
-    }
-
-    public void setInterviewDate(LocalDate interviewDate) {
         this.interviewDate = interviewDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Interview interview = (Interview) o;
-        return Objects.equals(candidate, interview.candidate) &&
-                Objects.equals(recruiter, interview.recruiter) &&
-                Objects.equals(interviewDate, interview.interviewDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(candidate, recruiter, interviewDate);
     }
 
     @Override
