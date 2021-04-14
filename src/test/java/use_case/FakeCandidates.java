@@ -1,6 +1,7 @@
 package use_case;
 
 import model.Candidate;
+import model.CandidateRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

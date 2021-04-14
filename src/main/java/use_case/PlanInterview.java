@@ -1,8 +1,6 @@
 package use_case;
 
-import model.Candidate;
-import model.Interview;
-import model.Recruiter;
+import model.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,7 +27,8 @@ public class PlanInterview {
                 recruiters.findRecruiterByAvailability(availability);
 
         Optional<Recruiter> recruiter = availableRecruiters.stream()
-                .filter(availableRecruiter -> availableRecruiter.getSkills().containsAll(candidateSkills))
+                .filter(availableRecruiter ->
+                        availableRecruiter.getSkills().containsAll(candidateSkills))
                 .findFirst();
 
         Recruiter appropriateRecruiter = recruiter.orElseThrow(AnyRecruiterFoundException::new);

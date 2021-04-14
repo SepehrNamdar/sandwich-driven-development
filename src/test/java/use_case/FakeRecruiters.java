@@ -1,6 +1,7 @@
 package use_case;
 
 import model.Recruiter;
+import model.RecruiterRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
