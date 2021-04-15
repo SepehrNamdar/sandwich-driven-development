@@ -20,27 +20,33 @@ public class PlanInterview {
         this.interviews = interviews;
     }
 
+    // Use Case -> Sandwich pattern applied
     public Interview plan(String candidateId, LocalDate availability) {
-        Candidate candidate = candidates.findById(candidateId);
-        List<String> candidateSkills = candidate.getSkills();
-
+        Candidate candidate = candidates.findById(candidateId); // is a shared state ? Yes
         List<Recruiter> availableRecruiters =
-                recruiters.findRecruiterByAvailability(availability);
+                recruiters.findRecruiterByAvailability(availability); // Is a shared state ? Yes
+
+        Interview interview = planInterview(availability, candidate, availableRecruiters);
+
+        recruiters.bookAvailability(interview.getRecruiter(), availability);    // is a shared state ? Yes
+        interviews.save(interview);
+        return interview;
+    }
+
+    private Interview planInterview(LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters) {
+        List<String> candidateSkills = candidate.getSkills();   // is a shared state ? No
 
         Optional<Recruiter> recruiter = availableRecruiters.stream()
                 .filter(availableRecruiter ->
                         availableRecruiter.getSkills().containsAll(candidateSkills))
-                .findFirst();
+                .findFirst();   // Is a shared state ?  No
 
         Recruiter appropriateRecruiter = recruiter.orElseThrow(AnyRecruiterFoundException::new);
-        recruiters.bookAvailability(appropriateRecruiter, availability);
 
         Interview interview = new Interview();
         interview.setCandidate(candidate);
         interview.setRecruiter(appropriateRecruiter);
         interview.setInterviewDate(availability);
-
-        interviews.save(interview);
         return interview;
     }
 }
