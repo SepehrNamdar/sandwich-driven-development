@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.stream.Collectors.toList;
+
 // Rich object
 public class Recruiter {
     private String recruiterId;
@@ -12,6 +14,16 @@ public class Recruiter {
     private String name;
 
     // behaviour
+    public List<Recruiter> getAvailableRecruiters(LocalDate availability, List<Recruiter> allRecruiters) {
+        return allRecruiters.stream()
+                .filter(recruiter -> recruiter.getAvailabilities().contains(availability))
+                .collect(toList());
+    }
+
+    public void bookAvailability(LocalDate availability) {
+        getAvailabilities().remove(availability);
+    }
+
     boolean canTest(List<String> candidateSkills) {
         return getSkills().containsAll(candidateSkills);
     }

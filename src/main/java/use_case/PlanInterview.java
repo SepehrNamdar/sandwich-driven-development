@@ -4,7 +4,6 @@ import model.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 // Application Service
 public class PlanInterview {
@@ -23,10 +22,9 @@ public class PlanInterview {
     // Use Case -> Sandwich pattern applied
     public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId); // is a shared state ? Yes
-        List<Recruiter> availableRecruiters =
-                recruiters.findRecruiterByAvailability(availability); // Is a shared state ? Yes
+        List<Recruiter> allRecruiters = recruiters.findAllRecruiters(); // Is a shared state ? Yes
 
-        Interview interview = new BookRecruiter().planInterview(availability, candidate, availableRecruiters, recruiters);
+        Interview interview = new BookRecruiter().planInterview(availability, candidate, allRecruiters);
 
         interviews.save(interview);
         return interview;
