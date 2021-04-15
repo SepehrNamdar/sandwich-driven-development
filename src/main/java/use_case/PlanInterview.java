@@ -23,6 +23,7 @@ public class PlanInterview {
     public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId); // is a shared state ? Yes
         List<Recruiter> allRecruiters = recruiters.findAllRecruiters(); // Is a shared state ? Yes
+        // Performance pb ? Just ask your Domain expert or DBA
 
         Interview interview = new BookRecruiter().planInterview(availability, candidate, allRecruiters);
 
