@@ -4,11 +4,17 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+// Rich object
 public class Recruiter {
     private String recruiterId;
     private List<String> skills;
     private List<LocalDate> availabilities;
     private String name;
+
+    // behaviour
+    boolean canTest(List<String> candidateSkills) {
+        return getSkills().containsAll(candidateSkills);
+    }
 
     public List<String> getSkills() {
         return skills;

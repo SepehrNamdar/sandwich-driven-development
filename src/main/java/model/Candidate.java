@@ -1,14 +1,21 @@
 package model;
 
+import use_case.AnyRecruiterFoundException;
+
 import java.util.List;
 import java.util.Objects;
 
-// Anemic objects
+// Rich objects
 public class Candidate {
     private List<String> skills;
     private String name;
 
-    // Any behviour
+    Recruiter findAppropriateRecruiter(List<Recruiter> availableRecruiters, List<String> candidateSkills) {
+        return availableRecruiters.stream()
+                .filter(availableRecruiter -> availableRecruiter.canTest(skills))
+                .findFirst()
+                .orElseThrow(AnyRecruiterFoundException::new);
+    }
 
     public List<String> getSkills() {
         return skills;

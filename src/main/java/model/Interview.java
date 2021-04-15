@@ -1,15 +1,31 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
-// Anemic Object
+// Rich Object
 public class Interview {
     private Candidate candidate;
     private Recruiter recruiter;
     private LocalDate interviewDate;
 
-    // Any behaviour
+    public Interview planInterview(
+            LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters) {
+        List<String> candidateSkills = candidate.getSkills();
+        Recruiter appropriateRecruiter =
+                candidate.findAppropriateRecruiter(availableRecruiters, candidateSkills);
+        return getInterview(availability, candidate, appropriateRecruiter);
+    }
+
+    private Interview getInterview(
+            LocalDate availability, Candidate candidate, Recruiter appropriateRecruiter) {
+        Interview interview = new Interview();
+        interview.setCandidate(candidate);
+        interview.setRecruiter(appropriateRecruiter);
+        interview.setInterviewDate(availability);
+        return interview;
+    }
 
     public Candidate getCandidate() {
         return candidate;
