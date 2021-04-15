@@ -3,9 +3,12 @@ package model;
 import java.util.List;
 import java.util.Objects;
 
+// Anemic objects
 public class Candidate {
     private List<String> skills;
     private String name;
+
+    // Any behviour
 
     public List<String> getSkills() {
         return skills;

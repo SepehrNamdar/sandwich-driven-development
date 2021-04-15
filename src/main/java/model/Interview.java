@@ -3,10 +3,13 @@ package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+// Anemic Object
 public class Interview {
     private Candidate candidate;
     private Recruiter recruiter;
     private LocalDate interviewDate;
+
+    // Any behaviour
 
     public Candidate getCandidate() {
         return candidate;

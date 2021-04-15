@@ -1,0 +1,36 @@
+[123, 2021-02-20] => Interview{candidate=Candidate{skills=[.Net, Java, PHP, JS], name='Alex'}, recruiter=Recruiter{recruiterId='002', skills=[Java, .Net, PHP, JS], availabilities=[2021-02-22], name='Mary'}, interviewDate=2021-02-20} 
+[123, 2021-02-21] => use_case.AnyRecruiterFoundException: null 
+[123, 2021-02-22] => Interview{candidate=Candidate{skills=[.Net, Java, PHP, JS], name='Alex'}, recruiter=Recruiter{recruiterId='002', skills=[Java, .Net, PHP, JS], availabilities=[2021-02-20], name='Mary'}, interviewDate=2021-02-22} 
+[123, 2033-02-20] => use_case.AnyRecruiterFoundException: null 
+[123, 1789-02-20] => use_case.AnyRecruiterFoundException: null 
+[123, null] => use_case.AnyRecruiterFoundException: null 
+[456, 2021-02-20] => Interview{candidate=Candidate{skills=[JS], name='Bob'}, recruiter=Recruiter{recruiterId='001', skills=[PHP, JS], availabilities=[], name='Emma'}, interviewDate=2021-02-20} 
+[456, 2021-02-21] => use_case.AnyRecruiterFoundException: null 
+[456, 2021-02-22] => Interview{candidate=Candidate{skills=[JS], name='Bob'}, recruiter=Recruiter{recruiterId='002', skills=[Java, .Net, PHP, JS], availabilities=[2021-02-20], name='Mary'}, interviewDate=2021-02-22} 
+[456, 2033-02-20] => use_case.AnyRecruiterFoundException: null 
+[456, 1789-02-20] => use_case.AnyRecruiterFoundException: null 
+[456, null] => use_case.AnyRecruiterFoundException: null 
+[789, 2021-02-20] => use_case.AnyRecruiterFoundException: null 
+[789, 2021-02-21] => use_case.AnyRecruiterFoundException: null 
+[789, 2021-02-22] => use_case.AnyRecruiterFoundException: null 
+[789, 2033-02-20] => use_case.AnyRecruiterFoundException: null 
+[789, 1789-02-20] => use_case.AnyRecruiterFoundException: null 
+[789, null] => use_case.AnyRecruiterFoundException: null 
+[, 2021-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[, 2021-02-21] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[, 2021-02-22] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[, 2033-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[, 1789-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[, null] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[null, 2021-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[null, 2021-02-21] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[null, 2021-02-22] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[null, 2033-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[null, 1789-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[null, null] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[BAD-ID, 2021-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[BAD-ID, 2021-02-21] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[BAD-ID, 2021-02-22] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[BAD-ID, 2033-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[BAD-ID, 1789-02-20] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
+[BAD-ID, null] => java.lang.NullPointerException: Cannot invoke "model.Candidate.getSkills()" because "candidate" is null 
