@@ -26,7 +26,7 @@ public class PlanInterview {
         List<Recruiter> availableRecruiters =
                 recruiters.findRecruiterByAvailability(availability); // Is a shared state ? Yes
 
-        Interview interview = new Interview().planInterview(availability, candidate, availableRecruiters, recruiters);
+        Interview interview = new BookRecruiter().planInterview(availability, candidate, availableRecruiters, recruiters);
 
         interviews.save(interview);
         return interview;

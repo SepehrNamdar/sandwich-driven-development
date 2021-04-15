@@ -10,16 +10,7 @@ public class Interview {
     private Recruiter recruiter;
     private LocalDate interviewDate;
 
-    public Interview planInterview(
-            LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters, RecruiterRepository recruiters) {
-        List<String> candidateSkills = candidate.getSkills();
-        Recruiter appropriateRecruiter =
-                candidate.findAppropriateRecruiter(availableRecruiters, candidateSkills);
-        Recruiter recruiter = recruiters.bookAvailability(appropriateRecruiter, availability);// is a shared state ? Yes
-        return getInterview(availability, candidate, recruiter);
-    }
-
-    private Interview getInterview(
+    public Interview getInterview(
             LocalDate availability, Candidate candidate, Recruiter appropriateRecruiter) {
         Interview interview = new Interview();
         interview.setCandidate(candidate);
