@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+// Application Service
 public class PlanInterview {
 
     private final CandidateRepository candidates;
@@ -18,14 +19,14 @@ public class PlanInterview {
         this.recruiters = recruiters;
         this.interviews = interviews;
     }
-    // Shared state
+    // Use Case
     public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId); // Shared state?  OUI
         List<Recruiter> availableRecruiters =
                 recruiters.findRecruiterByAvailability(availability); // Shared state ? OUI
 
         Interview interview =
-                new Interview().getInterview(availability, candidate, availableRecruiters, recruiters);
+                new InterviewService().getInterview1(availability, candidate, availableRecruiters, recruiters);
 
         interviews.save(interview);
         return interview;
