@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 // Aggregate
@@ -8,6 +9,18 @@ public class Interview {
     private Candidate candidate;
     private Recruiter recruiter;
     private LocalDate interviewDate;
+
+    public Interview getInterview(LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters) {
+        List<String> candidateSkills = candidate.getSkills();   // Shared state ? NON
+
+        Recruiter appropriateRecruiter = candidate.getAppropriateRecruiter(availableRecruiters, candidateSkills);
+
+        Interview interview = new Interview();
+        interview.setCandidate(candidate);
+        interview.setRecruiter(appropriateRecruiter);
+        interview.setInterviewDate(availability);
+        return interview;
+    }
 
     public Candidate getCandidate() {
         return candidate;
