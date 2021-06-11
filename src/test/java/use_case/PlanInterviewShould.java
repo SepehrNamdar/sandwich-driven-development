@@ -36,4 +36,14 @@ public class PlanInterviewShould {
         // WHEN
         return interview.plan(candidateId, interviewDate);
     }
+
+    @Test
+    void mutates_data_inside_recruiter_repository() {
+        final FakeRecruiters recruitersRepository = new FakeRecruiters();
+        PlanInterview interview = new PlanInterview(new FakeCandidates(), recruitersRepository, new FakeInterview());
+
+        interview.plan("123", of(2021, 2, 20));
+
+        Assertions.assertThat(recruitersRepository.recruiters).isEqualTo(new FakeRecruiters().recruiters);
+    }
 }
