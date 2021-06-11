@@ -4,7 +4,6 @@ import model.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 // Application Service
 public class PlanInterview {
@@ -19,14 +18,14 @@ public class PlanInterview {
         this.recruiters = recruiters;
         this.interviews = interviews;
     }
+
     // Use Case
     public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId); // Shared state?  OUI
-        List<Recruiter> availableRecruiters =
-                recruiters.findRecruiterByAvailability(availability); // Shared state ? OUI
+        List<Recruiter> allRecruiters = recruiters.findAllRecruiters();
 
         Interview interview =
-                new InterviewService().getInterview1(availability, candidate, availableRecruiters, recruiters);
+                new Interview().getInterview1(availability, candidate, allRecruiters);
 
         interviews.save(interview);
         return interview;

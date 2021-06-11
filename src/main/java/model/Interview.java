@@ -4,11 +4,29 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.stream.Collectors.toList;
+
 // Aggregate
 public class Interview {
     private Candidate candidate;
     private Recruiter recruiter;
     private LocalDate interviewDate;
+
+    public Interview getInterview1(LocalDate availability,
+                                   Candidate candidate,
+                                   List<Recruiter> allRecruiters) {
+        List<Recruiter> availableRecruiters = allRecruiters.stream()
+                .filter(recruiter -> recruiter.getAvailabilities().contains(availability))
+                .collect(toList());
+
+        List<String> candidateSkills = candidate.getSkills();   // Shared state ? NON
+
+        Recruiter appropriateRecruiter = candidate.getAppropriateRecruiter(availableRecruiters, candidateSkills);
+
+        appropriateRecruiter.getAvailabilities().remove(availability);
+
+        return new Interview().getInterview(availability, candidate, appropriateRecruiter);
+    }
 
     public Interview getInterview(LocalDate availability, Candidate candidate, Recruiter recruiter) {
         Interview interview = new Interview();
