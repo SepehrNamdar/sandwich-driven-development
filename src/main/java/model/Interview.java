@@ -9,15 +9,7 @@ public class Interview {
     private Recruiter recruiter;
     private LocalDate interviewDate;
 
-    public Interview getInterview(LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters) {
-        Recruiter appropriateRecruiter = candidate.findRecruiterAmong(availableRecruiters);
 
-        Interview interview = new Interview();
-        interview.setCandidate(candidate);
-        interview.setRecruiter(appropriateRecruiter);
-        interview.setInterviewDate(availability);
-        return interview;
-    }
 
     public Candidate getCandidate() {
         return candidate;
