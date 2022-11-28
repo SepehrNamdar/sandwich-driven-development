@@ -1,14 +1,20 @@
 package model;
 
+import use_case.AnyRecruiterFoundException;
+
 import java.util.List;
 import java.util.Objects;
 
-// Anemic
 public class Candidate {
     private List<String> skills;
     private String name;
 
-    // Sans comportement
+    Recruiter findRecruiterAmong(List<Recruiter> availableRecruiters) {
+        return availableRecruiters.stream()
+                .filter(availableRecruiter -> availableRecruiter.canTest(skills))
+                .findFirst()
+                .orElseThrow(AnyRecruiterFoundException::new);
+    }
 
     public List<String> getSkills() {
         return skills;
