@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+// Anemic
 public class Interview {
     private Candidate candidate;
     private Recruiter recruiter;

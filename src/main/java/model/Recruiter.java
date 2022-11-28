@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+// Anemic
 public class Recruiter {
     private String recruiterId;
     private List<String> skills;
