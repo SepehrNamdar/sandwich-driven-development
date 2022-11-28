@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+// Application Service
 public class PlanInterview {
 
     private final CandidateRepository candidates;
@@ -20,11 +21,19 @@ public class PlanInterview {
     }
 
     public Interview plan(String candidateId, LocalDate availability) {
-        Candidate candidate = candidates.findById(candidateId);
-        List<String> candidateSkills = candidate.getSkills();
-
-        List<Recruiter> availableRecruiters =
+        Candidate candidate = candidates.findById(candidateId); // Shared State ? OUI
+        List<Recruiter> availableRecruiters =                   // Shared State ? OUI
                 recruiters.findRecruiterByAvailability(availability);
+
+        Interview interview = getInterview(availability, candidate, availableRecruiters);
+
+        interviews.save(interview);
+        recruiters.bookAvailability(interview.getRecruiter(), availability);    // Shared State ? OUI
+        return interview;
+    }
+
+    private Interview getInterview(LocalDate availability, Candidate candidate, List<Recruiter> availableRecruiters) {
+        List<String> candidateSkills = candidate.getSkills();   // Shared State ? NON
 
         Optional<Recruiter> recruiter = availableRecruiters.stream()
                 .filter(availableRecruiter ->
@@ -32,14 +41,11 @@ public class PlanInterview {
                 .findFirst();
 
         Recruiter appropriateRecruiter = recruiter.orElseThrow(AnyRecruiterFoundException::new);
-        recruiters.bookAvailability(appropriateRecruiter, availability);
 
         Interview interview = new Interview();
         interview.setCandidate(candidate);
         interview.setRecruiter(appropriateRecruiter);
         interview.setInterviewDate(availability);
-
-        interviews.save(interview);
         return interview;
     }
 }
