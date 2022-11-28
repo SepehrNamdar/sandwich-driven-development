@@ -4,7 +4,8 @@ import model.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 // Application Service
 public class PlanInterview {
@@ -22,13 +23,20 @@ public class PlanInterview {
 
     public Interview plan(String candidateId, LocalDate availability) {
         Candidate candidate = candidates.findById(candidateId); // Shared State ? OUI
-        List<Recruiter> availableRecruiters =                   // Shared State ? OUI
-                recruiters.findRecruiterByAvailability(availability);
+        List<Recruiter> allRecruiters = recruiters.findAllRecruiters();
 
-        Interview interview = new InterviewService().getInterview(availability, candidate, availableRecruiters, recruiters);
+        List<Recruiter> availableRecruiters = getRecruiters(availability, allRecruiters);
+
+        Interview interview = new Interview().getInterview(availability, candidate, availableRecruiters);
 
         interviews.save(interview);
         return interview;
+    }
+
+    private List<Recruiter> getRecruiters(LocalDate availability, List<Recruiter> allRecruiters) {
+        return allRecruiters.stream()
+                .filter(recruiter -> recruiter.getAvailabilities().contains(availability))
+                .collect(toList());
     }
 
 }
